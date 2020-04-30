@@ -9,4 +9,9 @@
   -->
    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu.internal.manifest']"/>
    <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="extends">mono.android.app.IntentService</attr>
+   <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']/implements[contains(@name, 'no.nordicsemi.android.dfu.DfuProgressInfo.ProgressListener')]"/>
+
+
+   <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/interface[@name='FileType']"/>
+   <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/interface[@name='DfuScope']"/>
 </metadata>

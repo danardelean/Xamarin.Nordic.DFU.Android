@@ -2,4 +2,12 @@
 
 This is an Xamarin binding library for the Nordic Semiconductors Android library for updating the firmware of their devices over the air via Bluetooth Low Energy. The Java library is located here: https://github.com/NordicSemiconductor/Android-DFU-Library
 
-The "Sample" folder contains a small Xamarin app that uses the library.
+## BUILD
+
+To generate the package, run:
+
+```bash
+make [NORDIC_VERSION=Desired version]
+```
+
+and you'll find your nuget in the `Xamarin.Nordic.DFU.Android.Nuget` folder.
