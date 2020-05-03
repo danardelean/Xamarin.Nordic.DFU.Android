@@ -1,0 +1,4 @@
+[submodule "Xamarin.Nordic.DFU.Android.Source"]
+	path = "Xamarin.Nordic.DFU.Android.Source"
+	url = https://github.com/NordicSemiconductor/Android-DFU-Library.git
+    branch = improvement/xamarin

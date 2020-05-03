@@ -3,15 +3,40 @@
     <!--
   This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
+
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
-   <remove-node path="/api/package[@name='no.nordicsemi.android.dfu.internal.manifest']"/>
-   <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="extends">mono.android.app.IntentService</attr>
-   <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']/implements[contains(@name, 'no.nordicsemi.android.dfu.DfuProgressInfo.ProgressListener')]"/>
+    <!--   <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="extends">mono.android.app.IntentService</attr>
+   <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']/implements[contains(@name, 'no.nordicsemi.android.dfu.DfuProgressInfo.ProgressListener')]"/>  -->
+
+    <!--
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu.internal.manifest']"/>
+    <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="obfuscated">false</attr>
+
+    <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="visibility">public</attr>
+    <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="extends">mono.android.app.IntentService</attr>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']/implements[contains(@name, 'no.nordicsemi.android.dfu.DfuProgressInfo.ProgressListener')]"/>
+
+ <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']/implements[contains(@name, 'no.nordicsemi.android.dfu.DfuProgressInfo.ProgressListener')]"/>
 
 
+    <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="extends">mono.android.app.IntentService</attr>
+    -->
+
+    <attr path="/api/package[@name='no.nordicsemi.android.dfu']" name="managedName">Xamarin.Nordic.DFU.Android</attr>
+    <attr path="/api/package[@name='no.nordicsemi.android.error']" name="managedName">Xamarin.Nordic.DFU.Android.Error</attr>
+
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu.internal.manifest']"/>
+
+
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.1']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.2']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.3']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.4']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.5']"/>
+
+    <!-- Enums -->
    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/interface[@name='FileType']"/>
    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/interface[@name='DfuScope']"/>
 </metadata>
