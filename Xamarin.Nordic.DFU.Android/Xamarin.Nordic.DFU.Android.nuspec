@@ -22,7 +22,6 @@ The binding library supports Android version 5.0 and upwards. Version of the Nor
     <license type="expression">MIT</license>
     <tags>Xamarin Nordic DFU Android</tags>
     <dependencies>
-      <group targetFramework="MonoAndroid90"/>
       <group targetFramework="MonoAndroid10.0"/>
       <group>
         <dependency id="Xamarin.AndroidX.Annotation" version="1.1.0" />
@@ -35,8 +34,6 @@ The binding library supports Android version 5.0 and upwards. Version of the Nor
 
   <files>
       <file src="icon.png" target="images\"/>
-      <file src="bin/$assembly$.dll" target="lib\MonoAndroid90" />
-      <file src="bin/$assembly$.pdb" target="lib\MonoAndroid90" />
       <file src="bin/$assembly$.dll" target="lib\MonoAndroid10.0" />
       <file src="bin/$assembly$.pdb" target="lib\MonoAndroid10.0" />
   </files>

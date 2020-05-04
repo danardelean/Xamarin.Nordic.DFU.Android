@@ -1,18 +1,32 @@
 BUILD_FOLDER=Xamarin.Nordic.DFU.Android
-NUGET_FOLDER=../Xamarin.Nordic.DFU.Android.Nuget
+SOURCE_FOLDER=Xamarin.Nordic.DFU.Android.Source
+NUGET_FOLDER=Xamarin.Nordic.DFU.Android.Nuget
 
-NORDIC_VERSION=1.10.1
+NORDIC_VERSION=1.11.1
 
-SOURCE_AAR=Xamarin.Nordic.DFU.Android/dfu.aar
+AAR_FILE=Xamarin.Nordic.DFU.Android/Jars/dfu.aar
 
-all: build
+all: msbuild
 
-$(SOURCE_AAR):
-	curl -L "https://dl.bintray.com/nordic/android/no/nordicsemi/android/dfu/$(NORDIC_VERSION)/dfu-$(NORDIC_VERSION).aar" -o $(SOURCE_AAR)
+$(AAR_DIRECTORY)$(AAR_FILE):
+	gradle assembleRelease -p $(SOURCE_FOLDER)
+	cp $(SOURCE_FOLDER)/dfu/build/outputs/aar/dfu-release.aar $(AAR_FILE)
 
-build: $(SOURCE_AAR)
-	MSBuild $(BUILD_FOLDER)/*.sln -p:Configuration=Release -restore:True -p:PackageOutputPath=$(NUGET_FOLDER) -t:rebuild
+msbuild: $(AAR_DIRECTORY)$(AAR_FILE)
+	MSBuild $(BUILD_FOLDER)/*.sln -p:Configuration=Release -restore:True -p:PackageOutputPath=../$(NUGET_FOLDER) -t:rebuild
 
 clean:
+	# Cleaning repo
+	git clean -dfx
+	# Cleaning submodule repo
+	cd $(SOURCE_FOLDER)
+	git clean -dfx
+	cd ..
+	# Cleaning native outputs
+	rm -rf $(SOURCE_FOLDER)/dfu/build/outputs/*
+	# Cleaning nuget output
 	rm -rf $(NUGET_FOLDER)/*
+	# Cleaning nuget cache
+	rm -rf ~/.nuget/packages/xamarin.nordic.dfu.android
+	# Cleaning MSBuild output
 	MSBuild $(BUILD_FOLDER)/*.sln -t:clean

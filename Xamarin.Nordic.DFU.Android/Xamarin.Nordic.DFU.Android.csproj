@@ -1,44 +1,56 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <TargetFrameworks>MonoAndroid90;MonoAndroid10.0</TargetFrameworks>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProductVersion>8.0.30703</ProductVersion>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{9E0DB645-4D6A-46BC-807B-9B2B8C59ABD4}</ProjectGuid>
+        <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <TemplateGuid>{77efb91c-a7e9-4b0e-a7c5-31eeec3c6d46}</TemplateGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>Xamarin.Nordic.DFU.Android</RootNamespace>
         <AssemblyName>Xamarin.Nordic.DFU.Android</AssemblyName>
-        <OutputPath>bin/</OutputPath>
-        <DebugSymbols>true</DebugSymbols>
-        <IsBindingProject>true</IsBindingProject>
-        <EnableDefaultItems>false</EnableDefaultItems>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-        <AndroidClassParser>class-parse</AndroidClassParser>
+        <FileAlignment>512</FileAlignment>
+        <Deterministic>True</Deterministic>
+        <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+        <AndroidClassParser>jar2xml</AndroidClassParser>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-        <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-        <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-
-        <!-- [CS0109] The member '***' does not hide an accessible member. The new keyword is not required. -->
-        <NoWarn>CS0109</NoWarn>
-        
-        <IncludeSource>True</IncludeSource>
-        <IncludeSymbols>True</IncludeSymbols>
+        <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
         <DebugType>portable</DebugType>
-        <DebugSymbols>true</DebugSymbols>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-        <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
-        <AndroidSdkBuildToolsVersion Condition="'$(AndroidSdkBuildToolsVersion)' == ''">29.0.3</AndroidSdkBuildToolsVersion>
-        <AndroidManagedSymbols>true</AndroidManagedSymbols>
-        <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-        <Configurations>Debug;Release</Configurations>
+        <!-- [CS0109] The member '***' does not hide an accessible member. The new keyword is not required. -->
+        <NoWarn>CS0109</NoWarn>
+        <OutputPath>bin\</OutputPath>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <Optimize>false</Optimize>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <Optimize>true</Optimize>
+        <DefineConstants>TRACE</DefineConstants>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     <ItemGroup>
-        <TransformFile Include="Transforms\*.xml" SubType="Designer" />
+        <Reference Include="Mono.Android" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
     </ItemGroup>
-    <!--
     <ItemGroup>
-        <EmbeddedReferenceJar Include="gson-2.8.6.jar" />
-    </ItemGroup>-->
+        <TransformFile Include="Transforms\Metadata.xml" />
+        <TransformFile Include="Transforms\EnumFields.xml" />
+        <TransformFile Include="Transforms\EnumMethods.xml" />
+    </ItemGroup>
     <ItemGroup>
-        <LibraryProjectZip Include="dfu.aar" />
+        <LibraryProjectZip Include="Jars\dfu.aar" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedReferenceJar Include="Jars\gson-2.8.6.jar" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" PrivateAssets="all" />
@@ -46,4 +58,36 @@
         <PackageReference Include="Xamarin.AndroidX.LocalBroadcastManager" Version="1.0.0" PrivateAssets="all" />
     </ItemGroup>
 
+
+    <ItemGroup>
+        <None Include="$(AssemblyName).nuspec" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="GitVersionTask" Version="5.2.4" PrivateAssets="all" />
+        <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.5.1" PrivateAssets="all" />
+    </ItemGroup>
+    <PropertyGroup Condition=" $(GeneratePackageOnBuild) ">
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IncludeSource>True</IncludeSource>
+        <IncludeSymbols>True</IncludeSymbols>
+        <NuspecFile>$(AssemblyName).nuspec</NuspecFile>
+        <GitVersionConfig>GitVersion.yml</GitVersionConfig>
+        <!-- sourcelink: Declare that the Repository URL can be published to NuSpec -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <!-- sourcelink: Embed source files that are not tracked by the source control manager to the PDB -->
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <!-- sourcelink: Include PDB in the built .nupkg -->
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+        <UpdateAssemblyInfo>true</UpdateAssemblyInfo>
+    </PropertyGroup>
+    <Target Name="SetNuspec" AfterTargets="GetVersion" Condition=" $(GeneratePackageOnBuild) ">
+        <Message Importance="High" Text="GitVersion_InformationalVersion: $(GitVersion_InformationalVersion)" />
+        <Message Importance="High" Text="PackageVersion: $(PackageVersion)" />
+        <Message Importance="High" Text="AssemblySemVer: $(GitVersion_AssemblySemVer)" />
+        <CreateProperty Value="assembly=$(AssemblyName);version=$(GitVersion_AssemblySemVer);branch=$(GitVersion_BranchName);commit=$(GitVersion_Sha)">
+        <Output PropertyName="NuspecProperties" TaskParameter="Value" />
+        </CreateProperty>
+    </Target>
+
+    <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
