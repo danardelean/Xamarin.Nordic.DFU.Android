@@ -16,12 +16,6 @@ msbuild: $(AAR_DIRECTORY)$(AAR_FILE)
 	MSBuild $(BUILD_FOLDER)/*.sln -p:Configuration=Release -restore:True -p:PackageOutputPath=../$(NUGET_FOLDER) -t:rebuild
 
 clean:
-	# Cleaning repo
-	git clean -dfx
-	# Cleaning submodule repo
-	cd $(SOURCE_FOLDER)
-	git clean -dfx
-	cd ..
 	# Cleaning native outputs
 	rm -rf $(SOURCE_FOLDER)/dfu/build/outputs/*
 	# Cleaning nuget output

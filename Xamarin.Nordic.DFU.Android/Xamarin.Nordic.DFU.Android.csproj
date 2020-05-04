@@ -58,7 +58,7 @@
         <PackageReference Include="Xamarin.AndroidX.LocalBroadcastManager" Version="1.0.0" PrivateAssets="all" />
     </ItemGroup>
 
-
+<!-- PACKAGING START-->
     <ItemGroup>
         <None Include="$(AssemblyName).nuspec" />
     </ItemGroup>
@@ -88,6 +88,7 @@
         <Output PropertyName="NuspecProperties" TaskParameter="Value" />
         </CreateProperty>
     </Target>
+<!-- PACKAGING END-->
 
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
