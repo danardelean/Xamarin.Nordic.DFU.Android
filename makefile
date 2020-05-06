@@ -1,6 +1,5 @@
 BUILD_FOLDER=Xamarin.Nordic.DFU.Android
 SOURCE_FOLDER=Xamarin.Nordic.DFU.Android.Source
-NUGET_FOLDER=Xamarin.Nordic.DFU.Android.Nuget
 
 NORDIC_VERSION=1.11.1
 
@@ -13,13 +12,15 @@ $(AAR_DIRECTORY)$(AAR_FILE):
 	cp $(SOURCE_FOLDER)/dfu/build/outputs/aar/dfu-release.aar $(AAR_FILE)
 
 msbuild: $(AAR_DIRECTORY)$(AAR_FILE)
-	MSBuild $(BUILD_FOLDER)/*.sln -p:Configuration=Release -restore:True -p:PackageOutputPath=../$(NUGET_FOLDER) -t:rebuild
+ifdef NUGET_FOLDER
+	MSBuild $(SOURCE_FOLDER)/*.sln -t:Rebuild -restore:True -p:Configuration=Release -p:PackageOutputPath=$(NUGET_FOLDER)
+else
+	MSBuild $(SOURCE_FOLDER)/*.sln -t:Rebuild -restore:True -p:Configuration=Release
+endif
 
 clean:
 	# Cleaning native outputs
 	rm -rf $(SOURCE_FOLDER)/dfu/build/outputs/*
-	# Cleaning nuget output
-	rm -rf $(NUGET_FOLDER)/*
 	# Cleaning nuget cache
 	rm -rf ~/.nuget/packages/xamarin.nordic.dfu.android
 	# Cleaning MSBuild output
