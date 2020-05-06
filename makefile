@@ -13,9 +13,9 @@ $(AAR_DIRECTORY)$(AAR_FILE):
 
 msbuild: $(AAR_DIRECTORY)$(AAR_FILE)
 ifdef NUGET_FOLDER
-	MSBuild $(SOURCE_FOLDER)/*.sln -t:Rebuild -restore:True -p:Configuration=Release -p:PackageOutputPath=$(NUGET_FOLDER)
+	MSBuild $(BUILD_FOLDER)/*.sln -t:Rebuild -restore:True -p:Configuration=Release -p:PackageOutputPath=$(NUGET_FOLDER)
 else
-	MSBuild $(SOURCE_FOLDER)/*.sln -t:Rebuild -restore:True -p:Configuration=Release
+	MSBuild $(BUILD_FOLDER)/*.sln -t:Rebuild -restore:True -p:Configuration=Release
 endif
 
 clean:
