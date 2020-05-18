@@ -24,18 +24,17 @@
     <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="extends">mono.android.app.IntentService</attr>
     <remove-node path="/api/package[@name='no.nordicsemi.android.dfu.internal.manifest']"/>
 
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.1']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.2']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.3']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.4']"/>
+    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.5']"/>
     -->
 
     <attr path="/api/package[@name='no.nordicsemi.android.dfu']" name="managedName">Xamarin.Nordic.DFU.Android</attr>
     <attr path="/api/package[@name='no.nordicsemi.android.error']" name="managedName">Xamarin.Nordic.DFU.Android.Error</attr>
 
     <attr path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService']" name="extends">mono.android.app.IntentService</attr>
-
-    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.1']"/>
-    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.2']"/>
-    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.3']"/>
-    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.4']"/>
-    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/class[@name='DfuBaseService.5']"/>
 
     <!-- Enums -->
    <remove-node path="/api/package[@name='no.nordicsemi.android.dfu']/interface[@name='FileType']"/>
