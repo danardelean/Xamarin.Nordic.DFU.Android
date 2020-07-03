@@ -404,4 +404,5 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
-Xamarin.Nordic.DFU.Android.Nuget/*
+Xamarin.Nordic.DFU.Android.Nuget/*.snupkg
+Xamarin.Nordic.DFU.Android.Nuget/*.nupkg
